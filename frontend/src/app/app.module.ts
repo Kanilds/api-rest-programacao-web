@@ -24,39 +24,31 @@ import { CardModule } from 'primeng/card';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { ProdutolistagemComponent } from './produtolistagem/produtolistagem.component';
-import { VendaComponent } from './venda/venda.component';
-import { ProdutocadastroComponent } from './produtocadastro/produtocadastro.component';
-import { ProdutoatualizarComponent } from './produtoatualizar/produtoatualizar.component';
 import { HomeComponent } from './home/home.component';
-import { FornecedorlistagemComponent } from './fornecedorlistagem/fornecedorlistagem.component';
-import { FornecedorcadastroComponent } from './fornecedorcadastro/fornecedorcadastro.component';
-import { FornecedoratualizarComponent } from './fornecedoratualizar/fornecedoratualizar.component';
+import { AnimeListarComponent } from './anime-listar/anime-listar.component';
+import { AnimeCadastrarComponent } from './anime-cadastrar/anime-cadastrar.component';
+import { AnimeAtualizarComponent } from './anime-atualizar/anime-atualizar.component';
 
 
 const routes: Routes = [
   { path: '', component: HomeComponent},
-  { path: 'produtos', component: ProdutolistagemComponent },
-  { path: 'venda', component: VendaComponent },
-  { path: 'produtos/novo', component: ProdutocadastroComponent },
-  { path: 'produtos/atualizar/:codigo', component: ProdutoatualizarComponent },
-  { path: 'fornecedores', component: FornecedorlistagemComponent },
-  { path: 'fornecedores/novo', component: FornecedorcadastroComponent },
-  { path: 'fornecedores/atualizar/:codigo', component: FornecedoratualizarComponent }
+  // { path: 'produtos', component: ProdutolistagemComponent },
+  // { path: 'venda', component: VendaComponent },
+  // { path: 'produtos/novo', component: ProdutocadastroComponent },
+  // { path: 'produtos/atualizar/:codigo', component: ProdutoatualizarComponent },
+  // { path: 'fornecedores', component: FornecedorlistagemComponent },
+  // { path: 'fornecedores/novo', component: FornecedorcadastroComponent },
+  // { path: 'fornecedores/atualizar/:codigo', component: FornecedoratualizarComponent }
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    ProdutolistagemComponent,
-    VendaComponent,
-    ProdutocadastroComponent,
-    ProdutoatualizarComponent,
     HomeComponent,
-    FornecedorlistagemComponent,
-    FornecedorcadastroComponent,
-    FornecedoratualizarComponent
+    AnimeListarComponent,
+    AnimeCadastrarComponent,
+    AnimeAtualizarComponent
   ],
   imports: [
     BrowserModule,

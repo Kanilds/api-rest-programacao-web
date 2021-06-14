@@ -4,18 +4,11 @@ import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 
 @Component({
-  selector: 'app-cadastro',
-  templateUrl: './produtocadastro.component.html',
-  styleUrls: ['./produtocadastro.component.css']
+  selector: 'app-anime-cadastrar',
+  templateUrl: './anime-cadastrar.component.html',
+  styleUrls: ['./anime-cadastrar.component.css']
 })
-export class ProdutocadastroComponent implements OnInit {
-
-  produto: any = {
-    descricao: '',
-    preco: '',
-    estoque: ''
-  };
-  fornecedores: any = [];
+export class AnimeCadastrarComponent implements OnInit {
 
   constructor(
     private http: HttpClient,
@@ -27,6 +20,13 @@ export class ProdutocadastroComponent implements OnInit {
     this.http.get('http://localhost:8080/rest/fornecedor')
       .subscribe(resultado => this.fornecedores = resultado);
   }
+
+  produto: any = {
+    descricao: '',
+    preco: '',
+    estoque: ''
+  };
+  fornecedores: any = [];
 
   adicionarProduto(produto) {
 

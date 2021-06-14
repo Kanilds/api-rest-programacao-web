@@ -4,13 +4,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 
 @Component({
-  selector: 'app-fornecedoratualizar',
-  templateUrl: './fornecedoratualizar.component.html',
-  styleUrls: ['./fornecedoratualizar.component.css']
+  selector: 'app-anime-atualizar',
+  templateUrl: './anime-atualizar.component.html',
+  styleUrls: ['./anime-atualizar.component.css']
 })
-export class FornecedoratualizarComponent implements OnInit {
-
-  fornecedor: any = {};
+export class AnimeAtualizarComponent implements OnInit {
 
   constructor(
     private http: HttpClient,
@@ -22,11 +20,19 @@ export class FornecedoratualizarComponent implements OnInit {
   ngOnInit(): void {
     const codigo = this.route.snapshot.params['codigo'];
     this.buscarCodigo(codigo);
-    this.fornecedor.codigo = codigo;
+    this.produto.codigo = codigo;
   }
 
+  produto: any = {
+    codigo: '',
+    descricao: '',
+    estoque: '',
+    preco: ''
+  };
+  fornecedores: any = [];
+  
   mensagem() {
-    this.messageService.add({ severity: 'success', summary: 'SUCESSO', detail: 'Fornecedor alterado!' });
+    this.messageService.add({ severity: 'success', summary: 'SUCESSO', detail: 'Produto alterado!' });
   }
 
   mensagemErro() {
@@ -34,19 +40,22 @@ export class FornecedoratualizarComponent implements OnInit {
   }
 
   buscarCodigo(codigo) {
-    this.http.get(`http://localhost:8080/rest/fornecedor/${codigo}`)
-      .subscribe(resultado => this.fornecedor = resultado);
+    this.http.get(`http://localhost:8080/rest/produto/${codigo}`)
+      .subscribe(resultado => this.produto = resultado);
+
+    this.http.get('http://localhost:8080/rest/fornecedor')
+      .subscribe(resultado => this.fornecedores = resultado);
   }
 
-  atualizarFornecedor() {
-    if (this.fornecedor.descricao === '') {
-      this.fornecedor.descricao = null;
+  atualizarProduto() {
+    if (this.produto.descricao === '') {
+      this.produto.descricao = null;
     }
-    this.http.put(`http://localhost:8080/rest/fornecedor`, this.fornecedor)
+    this.http.put(`http://localhost:8080/rest/produto`, this.produto)
       .subscribe(
         resultado => {
           this.mensagem();
-          this.router.navigate(['/', 'fornecedores']);
+          this.router.navigate(['/', 'produtos']);
         }, erro => {
           if (erro.status === 500) {
             this.mensagemErro();
@@ -54,5 +63,4 @@ export class FornecedoratualizarComponent implements OnInit {
         }
       );
   }
-
 }

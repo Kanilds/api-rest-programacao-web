@@ -1,12 +1,12 @@
 const router = require('express').Router()
 const mongoose = require('mongoose')
 
-const Produto = require('../models/produtos')
+const Anime = require('../models/animes')
 const checkAuth = require('../middleware/checkAuth')
 
 router.get('/', (req, res, next) => {
     
-    Produto.find()
+    Anime.find()
         .exec()
         .then(doc => {
             res.status(200).json(doc)
@@ -18,18 +18,18 @@ router.get('/', (req, res, next) => {
         })
 })
 
-router.get('/:produtoId', (req, res, next) => {
+router.get('/:animeId', (req, res, next) => {
 
-    Produto.findOne({ _id: req.params.produtoId })
+    Anime.findOne({ _id: req.params.animeId })
         .exec()
         .then(result => {
             if (result === null) {
                 res.status(404).json({
-                    message: "Produto não encontrado!",
+                    message: "Anime não encontrado!",
                 })
             }
             res.status(200).json({
-                produto: result
+                anime: result
             })
         })
         .catch(reject => {
@@ -39,41 +39,47 @@ router.get('/:produtoId', (req, res, next) => {
         })
 })
 
-router.post('/', checkAuth, (req, res, next) => {
+router.post('/', (req, res, next) => {
 
-    const produto = new Produto({
+    const anime = new Anime({
         _id: new mongoose.Types.ObjectId(),
-        nome: req.body.nome,
-        preco: req.body.preco
+        titulo: req.body.titulo,
+        estudio: req.body.estudio,
+        status: req.body.status,
+        progresso: req.body.progresso,
+        nota: req.body.nota
     })
 
-    produto.save()
+    anime.save()
         .then(result => {
             res.status(201).json({
-                message: 'Produto salvo com sucesso!',
-                produto: produto
+                message: 'Anime salvo com sucesso!',
+                anime
             })
         })
         .catch(reject => {
             res.status(404).json({
-                message: "Produto não encontrado!",
+                message: "Anime não encontrado!",
                 error: reject
             })
         })
 })
 
-router.put('/:produtoId', checkAuth, (req, res, next) => {
+router.put('/:animeId', (req, res, next) => {
 
-    Produto.updateOne(
-        { _id: req.params.produtoId },
+    Anime.updateOne(
+        { _id: req.params.animeId },
         {
-            nome: req.body.nome,
-            preco: req.body.preco
+            titulo: req.body.titulo,
+            estudio: req.body.estudio,
+            status: req.body.status,
+            progresso: req.body.progresso,
+            nota: req.body.nota
         }
         )
         .then(result => {
             res.status(200).json({
-                message: 'Produto atualizado com sucesso!',
+                message: 'Anime atualizado com sucesso!',
             })
         })
         .catch(reject => {
@@ -83,17 +89,17 @@ router.put('/:produtoId', checkAuth, (req, res, next) => {
         })
 })
 
-router.delete('/:produtoId', checkAuth, (req, res, next) => {
+router.delete('/:animeId', (req, res, next) => {
 
-    Produto.deleteOne({ _id: req.params.produtoId })
+    Anime.deleteOne({ _id: req.params.animeId })
         .then(result => {
             res.status(200).json({
-                message: 'Produto deletado com sucesso!',
+                message: 'Anime deletado com sucesso!',
             })
         })
         .catch(reject => {
             res.status(404).json({
-                message: "Produto não encontrado!",
+                message: "Anime não encontrado!",
                 error: reject
             })
         })

@@ -3,23 +3,23 @@ import { Component, OnInit } from '@angular/core';
 import { ConfirmationService, MessageService } from 'primeng/api';
 
 @Component({
-  selector: 'app-produto',
-  templateUrl: './produtolistagem.component.html',
-  styleUrls: ['./produtolistagem.component.css']
+  selector: 'app-anime-listar',
+  templateUrl: './anime-listar.component.html',
+  styleUrls: ['./anime-listar.component.css']
 })
-export class ProdutolistagemComponent implements OnInit {
-
-  produtos: any = [];
+export class AnimeListarComponent implements OnInit {
 
   constructor(
-      private http: HttpClient,
-      private confirmationService: ConfirmationService,
-      private messageService: MessageService
-    ) { }
+    private http: HttpClient,
+    private confirmationService: ConfirmationService,
+    private messageService: MessageService
+  ) { }
 
   ngOnInit(): void {
     this.pesquisarProduto();
   }
+
+  produtos: any = [];
 
   confirmarExclusao(produto: any) {
 
@@ -37,8 +37,10 @@ export class ProdutolistagemComponent implements OnInit {
   }
 
   pesquisarProduto() {
-    this.http.get(`http://localhost:8080/rest/produto`)
+    this.http.get(`http://localhost:4000/animes`)
       .subscribe(resultado => this.produtos = resultado);
+      console.log(this.produtos);
+      
   }
 
   excluirProduto(produto: any) {
@@ -54,5 +56,4 @@ export class ProdutolistagemComponent implements OnInit {
   mensagem() {
     this.messageService.add({ severity: 'success', summary: 'SUCESSO', detail: 'Produto Excluido!' });
   }
-
 }

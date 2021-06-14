@@ -4,7 +4,7 @@ const morgan = require('morgan')
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
 
-const produtoRouter = require('./routes/produtos')
+const animeRouter = require('./routes/animes')
 const usuarioRouter = require('./routes/usuarios')
 
 const app = express()
@@ -34,7 +34,7 @@ app.use((req, res, next) => {
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
-app.use('/produtos', produtoRouter)
+app.use('/animes', animeRouter)
 app.use('/usuarios', usuarioRouter)
 
 app.use((req, res, next) => {

@@ -1,0 +1,38 @@
+<app-navbar></app-navbar>
+
+<div class="container">
+    <form #frm="ngForm" (ngSubmit)="adicionarProduto(frm)">
+        <div class="p-grid p-fluid">
+            <div class="p-col-12">
+                <h2>Novo Produto</h2>
+            </div>
+
+            <div class="p-col-12">
+                <label>Descrição</label>
+                <textarea pInputTextarea name="descricao" autoResize="autoResize" rows="3"
+                    [(ngModel)]="produto.descricao" maxlength="200" required></textarea>
+            </div>
+            <div class="p-col-4">
+                <label>Fornecedor</label>
+                <p-dropdown name="fornecedor" [options]="fornecedores" optionLabel="descricao"
+                    [(ngModel)]="produto.fornecedor" required [style]="{'margin-top': '0px'}"
+                    placeholder="Selecione um fornecedor"></p-dropdown>
+            </div>
+            <div class="p-col-4">
+                <label>Valor</label>
+                <p-inputNumber name="preco" [(ngModel)]="produto.preco" [min]="0" [max]="9999.99" mode="currency"
+                    currency="BRL" locale="pt-BR" [showButtons]="true" required></p-inputNumber>
+            </div>
+            <div class="p-col-4">
+                <label>Quantidade</label>
+                <p-inputNumber name="estoque" [(ngModel)]="produto.estoque" [min]="0" [max]="30000" [showButtons]="true"
+                    required></p-inputNumber>
+            </div>
+        </div>
+        <div class="p-col-12">
+            <button style="margin: 0px 15px 0px -8px" pButton type="button" label="Salvar"
+                (click)="adicionarProduto(frm)"></button>
+            <a href="http://localhost:4200/produtos">Voltar para os produtos</a>
+        </div>
+    </form>
+</div>
