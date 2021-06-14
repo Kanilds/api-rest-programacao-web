@@ -1,0 +1,63 @@
+<app-navbar></app-navbar>
+
+<div class="container">
+  <div class="p-grid">
+    <div class="p-col-12">
+      <h2 style="text-align: center;">Seja Bem-Vindo</h2>
+    </div>
+  </div>
+  <div class="p-shadow-1" style="padding: 10px;">
+    <div class="p-grid p-ai-center">
+      <div class="p-col-6"  style="border-right: solid 1px black;">
+        <h3 class="tituloCarrosel">Edições Especiais!</h3>
+        <p-carousel class="slides-wrapper" [value]="mini" [autoplayInterval]="3000" [circular]="true">
+          <ng-template #item let-item let-i="index" let-mini pTemplate="mini">
+            <div>
+              <img class="items" [src]="mini.name">
+            </div>
+          </ng-template>
+        </p-carousel>
+      </div>
+      <div class="p-col-6">
+        <p-fieldset>
+          <p-header style="font-weight: bold;">Sobre Nós</p-header>
+          <span class="introducao">
+            Somos uma empresa consolidada no ramo de miniaturas automobilísticas há mais de 20 anos, possuímos em nosso
+            estoque os mais exímios exemplares, somando mais de 1001 modelos distintos.
+            <br>Estamos prontos para lhe atender!
+          </span>
+        </p-fieldset>
+      </div>
+    </div>
+
+    <hr>
+
+    <h3>Nossos Modelos</h3>
+    <div class="p-grid">
+      <div class="p-col-4">
+        <p-card>
+          <p-header>
+            <img src="assets/home_esportivo.jpg" class="card-img" alt="...">
+          </p-header>
+          <span class="card-texto">Categoria Esportivo</span>
+        </p-card>
+      </div>
+      <div class="p-col-4">
+        <p-card>
+          <p-header>
+            <img src="assets/home_retro.jpg" class="card-img" alt="...">
+          </p-header>
+          <span class="card-texto">Categoria Retro</span>
+        </p-card>
+      </div>
+      <div class="p-col-4">
+        <p-card>
+          <p-header>
+            <img src="assets/home_suv.jpg" class="card-img" alt="...">
+          </p-header>
+          <span class="card-texto">Categoria SUV</span>
+        </p-card>
+      </div>
+    </div>
+  </div>
+</div>

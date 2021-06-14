@@ -1,0 +1,22 @@
+<app-navbar></app-navbar>
+
+<div class="container">
+  <form>
+    <div class="p-grid p-fluid">
+      <div class="p-col-12">
+        <h2>Atualizar Fornecedor</h2>
+      </div>
+
+      <div class="p-col-12">
+        <label>Descrição</label>
+        <textarea pInputTextarea name="descricao" rows="3" autoResize="autoResize" [(ngModel)]="fornecedor.descricao"
+          maxlength="100" required></textarea>
+      </div>
+    </div>
+    <div class="p-col-12">
+      <button style="margin: 0px 15px 0px -8px" pButton type="button" label="Salvar"
+        (click)="atualizarFornecedor()"></button>
+      <a href="http://localhost:4200/fornecedores">Voltar para Fornecedores</a>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,29 @@
+.cabecalho {
+  font-weight: bold;
+}
+
+.col-estoque {
+  width: 100px;
+
+}
+
+.col-valor {
+  width: 100px;
+
+}
+
+.col-acoes {
+  width: 120px;
+  margin: 0px 5px;
+}
+
+.col-fornecedor {
+  width: 300px;
+}
+
+.col-codigo {
+  width: 120px;
+}
+
+
+

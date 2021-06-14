@@ -1,0 +1,35 @@
+/* You can add global styles to this file, and also import other style files */
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: hsla(201, 75%, 47%, 0.070);
+  font-size: larger;
+}
+
+
+label {
+  font-weight: bold;
+  margin: 5px;
+}
+
+/* Caso a largura da tela esteja acima de "1200px" aplica estas estilizações */
+@media (min-width: 1200px) {
+  .container {
+    width: 1170px;
+    margin: 0 auto;
+  }
+}
+
+div {
+  margin: 10px 0px 10px 0px;
+}
+
+a {
+  text-decoration: none;
+}
+
+.botton{
+  font-size: 30px;
+  margin-top: -10px;
+}
+
