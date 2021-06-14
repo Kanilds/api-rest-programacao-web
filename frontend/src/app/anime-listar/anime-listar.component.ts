@@ -16,19 +16,19 @@ export class AnimeListarComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.pesquisarProduto();
+    this.pesquisarAnime();
   }
 
-  produtos: any = [];
+  animes: any = [];
 
-  confirmarExclusao(produto: any) {
+  confirmarExclusao(anime: any) {
 
     this.confirmationService.confirm({
       target: event.target,
-      message: 'Tem certeza que deseja excluir este produto?',
+      message: 'Tem certeza que deseja excluir este Anime?',
       icon: 'pi pi-trash',
       accept: () => {
-        this.excluirProduto(produto);
+        this.excluirAnime(anime);
       },
       reject: () => {
         this.messageService.add({ severity: 'warn', summary: 'CANCELADO', detail: 'Exclusão cancelada!' });
@@ -36,24 +36,24 @@ export class AnimeListarComponent implements OnInit {
     });
   }
 
-  pesquisarProduto() {
+  pesquisarAnime() {
     this.http.get(`http://localhost:4000/animes`)
-      .subscribe(resultado => this.produtos = resultado);
-      console.log(this.produtos);
+      .subscribe(resultado => this.animes = resultado);
+      console.log(this.animes);
       
   }
 
-  excluirProduto(produto: any) {
-    this.http.delete(`http://localhost:8080/rest/produto/${produto.codigo}`)
+  excluirAnime(anime: any) {
+    this.http.delete(`http://localhost:4000/animes/${anime._id}`)
       .subscribe(
         resultado => {
-          this.pesquisarProduto();
+          this.pesquisarAnime();
           this.mensagem();
         }
       );
   }
 
   mensagem() {
-    this.messageService.add({ severity: 'success', summary: 'SUCESSO', detail: 'Produto Excluido!' });
+    this.messageService.add({ severity: 'success', summary: 'SUCESSO', detail: 'Anime Excluido!' });
   }
 }
