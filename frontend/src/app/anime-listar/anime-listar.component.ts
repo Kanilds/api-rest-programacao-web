@@ -5,55 +5,87 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 @Component({
   selector: 'app-anime-listar',
   templateUrl: './anime-listar.component.html',
-  styleUrls: ['./anime-listar.component.css']
+  styleUrls: ['./anime-listar.component.css'],
+  styles: [`
+        :host ::ng-deep .p-dialog .product-image {
+            width: 150px;
+            margin: 0 auto 2rem auto;
+            display: block;
+        }
+    `],
+  providers: [MessageService, ConfirmationService]
 })
 export class AnimeListarComponent implements OnInit {
 
-  constructor(
-    private http: HttpClient,
-    private confirmationService: ConfirmationService,
-    private messageService: MessageService
-  ) { }
-
-  ngOnInit(): void {
-    this.pesquisarAnime();
+  animeDialogo: boolean;
+  submetido: boolean;
+  animes: any = [];
+  status: any = [];
+  anime: any = {
+    titulo: '',
+    estudio: '',
+    status: '',
+    progresso: '',
+    nota: ''
   }
 
-  animes: any = [];
+  constructor(private http: HttpClient, private messageService: MessageService, private confirmationService: ConfirmationService) { }
 
-  confirmarExclusao(anime: any) {
+  ngOnInit() {
+    this.pesquisarAnime()
 
-    this.confirmationService.confirm({
-      target: event.target,
-      message: 'Tem certeza que deseja excluir este Anime?',
-      icon: 'pi pi-trash',
-      accept: () => {
-        this.excluirAnime(anime);
-      },
-      reject: () => {
-        this.messageService.add({ severity: 'warn', summary: 'CANCELADO', detail: 'Exclusão cancelada!' });
-      }
-    });
+    this.status = [
+      { label: 'PLANEJANDO', value: 'planejando' },
+      { label: 'ASSISTINDO', value: 'assistindo' },
+      { label: 'EM ESPERA', value: 'em espera' },
+      { label: 'FINALIZADO', value: 'finalizado' }
+    ];
   }
 
   pesquisarAnime() {
     this.http.get(`http://localhost:4000/animes`)
       .subscribe(resultado => this.animes = resultado);
-      console.log(this.animes);
-      
   }
 
-  excluirAnime(anime: any) {
-    this.http.delete(`http://localhost:4000/animes/${anime._id}`)
+  openNew() {
+    this.submetido = false;
+    this.animeDialogo = true;
+  }
+
+  editAnime(anime) {
+    this.animeDialogo = true;
+  }
+
+  deleteAnime(anime) {
+    this.confirmationService.confirm({
+      message: 'Are you sure you want to delete ?',
+      header: 'Confirm',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        this.http.delete(`http://localhost:4000/animes/${anime._id}`)
+          .subscribe(
+            resultado => {
+              this.pesquisarAnime();
+            }
+          );
+        this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Anime Deletado', life: 3000 });
+      }
+    });
+  }
+
+  hideDialog() {
+    this.animeDialogo = false;
+    this.submetido = false;
+  }
+
+  saveAnime() {
+    this.submetido = true;
+
+    this.http.post('http://localhost:4000/animes', JSON.stringify(this.anime))
       .subscribe(
         resultado => {
-          this.pesquisarAnime();
-          this.mensagem();
+          console.log(this.anime);
         }
       );
-  }
-
-  mensagem() {
-    this.messageService.add({ severity: 'success', summary: 'SUCESSO', detail: 'Anime Excluido!' });
   }
 }
