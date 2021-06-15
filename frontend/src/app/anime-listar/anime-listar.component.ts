@@ -22,7 +22,6 @@ export class AnimeListarComponent implements OnInit {
   animes: any = [];
 
   confirmarExclusao(anime: any) {
-
     this.confirmationService.confirm({
       target: event.target,
       message: 'Tem certeza que deseja excluir este Anime?',

@@ -8,10 +8,9 @@
     </div>
 
     <div class="p-grid">
-        <div class="p-col-12">       
+        <div class="p-col-12">
             <p-table [value]="animes" [paginator]="true" [rows]="5" [responsive]="true">
                 <ng-template pTemplate="header">
-                    <!-- Impressão dos cabeçalhos -->
                     <tr>
                         <th class="col-titulo" pSortableColumn="titulo"><span class="cabecalho">Titulo</span>
                             <p-sortIcon field="titulo"></p-sortIcon>
@@ -25,15 +24,13 @@
                         <th class="col-progresso" pSortableColumn="progresso"><span class="cabecalho">Progresso</span>
                             <p-sortIcon field="progresso"></p-sortIcon>
                         </th>
-                        <th class="col-nota" pSortableColumn="nota.estudio"><span
-                                class="cabecalho">Nota</span>
-                            <p-sortIcon field="nota.estudio"></p-sortIcon>
+                        <th class="col-nota" pSortableColumn="nota"><span class="cabecalho">Nota</span>
+                            <p-sortIcon field="nota"></p-sortIcon>
                         </th>
                         <th class="col-acoes" style="text-align: center;"><i class="pi pi-sliders-h"></i></th>
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-anime>
-                    <!-- Impressão das colunas -->
                     <tr>
                         <td class="col-titulo">{{anime.titulo}}</td>
                         <td>{{anime.titulo}}</td>
@@ -43,7 +40,7 @@
                         <td class="col-acoes">
                             <a style="margin: 0px 5px;" pButton icon="pi pi-pencil" pTooltip="Editar"
                                 tooltipPosition="top"
-                                href="http://localhost:4200/animes/atualizar/{{anime.titulo}}"></a>
+                                href="http://localhost:4200/animes/atualizar/{{anime._id}}"></a>
                             <button pButton icon="pi pi-trash" pTooltip="Excluir" tooltipPosition="top"
                                 (click)="confirmarExclusao(anime)"></button>
                         </td>
