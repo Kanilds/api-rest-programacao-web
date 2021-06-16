@@ -1,17 +1,22 @@
+
+
 <p-toast></p-toast>
 
 <div class="card">
     <p-toolbar styleClass="p-mb-4">
         <ng-template pTemplate="left">
-            <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success p-mr-2"
-                (click)="openNew()"></button>
+            <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success p-mr-2" 
+                (click)="openNew()" ></button>
         </ng-template>
+
+        <h3 class="h3">Animes</h3> 
+        
         <ng-template pTemplate="right">
             <p-fileUpload mode="basic" accept="image/*" [maxFileSize]="1000000" label="Import" chooseLabel="Import"
                 class="p-mr-2 p-d-inline-block"></p-fileUpload>
         </ng-template>
     </p-toolbar>
-
+                     
     <p-table #dt [value]="animes" [rows]="10" [paginator]="true"
         [globalFilterFields]="['titulo','estudio','status','progresso', 'nota']" [rowHover]="true" dataKey="_id"
         currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
