@@ -23,10 +23,9 @@
                         <button pButton pRipple label="Novo" icon="pi pi-plus" class="p-button-success p-mr-2"
                             (click)="criarAnime()"></button>
                     </ng-template>
-                    <h3 class="h3">Animes</h3>
                 </p-toolbar>
 
-                <p-table #dt [value]="animes" [rows]="10" [paginator]="true"
+                <p-table #dt [value]="animes" [rows]="4" [paginator]="true"
                     [globalFilterFields]="['titulo','estudio','status','progresso', 'nota']" [rowHover]="true"
                     dataKey="_id" currentPageReportTemplate="Mostrando {first} de {last} no total de {totalRecords}"
                     [showCurrentPageReport]="true">
@@ -108,7 +107,7 @@
                     <div class="p-formgrid p-grid">
                         <div class="p-field p-col">
                             <label for="progresso">Progresso</label>
-                            <p-inputNumber id="progresso" [(ngModel)]="anime.progresso" [min]="0" value=0>
+                            <p-inputNumber id="progresso" [(ngModel)]="anime.progresso" [showButtons]="true" [min]="0" value=0>
                             </p-inputNumber>
                         </div>
                         <label for="nota">Nota</label>

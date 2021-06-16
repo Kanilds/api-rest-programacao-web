@@ -35,9 +35,8 @@ a {
 body{
   background-image: url('./assets/planodefundo.jpg');
   background-repeat: no-repeat;
-  background-size: 100% ;
+  background-size: auto;
   font-size: larger;
-  margin: 50px;
 }
 .p-toolbar{
   margin: 200px,0px,200px,0px;
