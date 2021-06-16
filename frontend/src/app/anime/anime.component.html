@@ -1,12 +1,27 @@
 <p-toast></p-toast>
+<div class="container">
+    <p-card class="naruto">
+        <div class="p-grid p-jc-center">
+            <div class="p-col-12">
+                <p-carousel class="slides-wrapper" [value]="fotos" [autoplayInterval]="6000" [circular]="true">
+                    <ng-template #item let-item let-i="index" let-foto pTemplate="foto">
+                        <div>
+                            <img class="items" [src]="foto.name">
+                        </div>
+                    </ng-template>
+                </p-carousel>
+            </div>
+        </div>
+    </p-card>
 
-<div class="card">
-    <p-toolbar styleClass="p-mb-4">
-        <ng-template pTemplate="left">
-            <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success p-mr-2"
-                (click)="criarAnime()"></button>
-        </ng-template>
-    </p-toolbar>
+    <div class="card">
+        <p-toolbar styleClass="p-mb-4">
+            <ng-template pTemplate="left">
+                <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success p-mr-2"
+                    (click)="criarAnime()"></button>
+            </ng-template>
+
+        </p-toolbar>
 
     <p-table #dt [value]="animes" [rows]="10" [paginator]="true"
         [globalFilterFields]="['titulo','estudio','status','progresso', 'nota']" [rowHover]="true" dataKey="_id"
@@ -104,3 +119,4 @@
 </p-dialog>
 
 <p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
+</div>

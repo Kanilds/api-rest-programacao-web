@@ -14,7 +14,8 @@ export class AnimeComponent implements OnInit {
   submetido: boolean;
   animes: any = [];
   status: any = [];
-  anime: any = {}
+  fotos: any = [];
+  anime: any = {};
 
   constructor(private http: HttpClient, private messageService: MessageService, private confirmationService: ConfirmationService) { }
 
@@ -26,6 +27,19 @@ export class AnimeComponent implements OnInit {
       { label: 'Assistindo', value: 'Assistindo' },
       { label: 'Em Espera', value: 'Em Espera' },
       { label: 'Finalizado', value: 'Finalizado' }
+    ];
+
+    this.fotos = [
+      { name: 'assets/miniatura01.jpg' },
+      { name: 'assets/miniatura02.jpg' },
+      { name: 'assets/miniatura03.jpg' },
+      { name: 'assets/miniatura04.jpg' },
+      { name: 'assets/miniatura07.jpg' },
+      { name: 'assets/miniatura08.jpg' },
+      { name: 'assets/miniatura09.jpg' },
+      { name: 'assets/miniatura10.jpg' },
+      { name: 'assets/miniatura11.jpg' },
+      { name: 'assets/miniatura00.jpg' }
     ];
   }
 
