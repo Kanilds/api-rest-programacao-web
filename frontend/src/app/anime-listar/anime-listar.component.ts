@@ -5,7 +5,6 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 @Component({
   selector: 'app-anime-listar',
   templateUrl: './anime-listar.component.html',
-  styleUrls: ['./anime-listar.component.css'],
   styles: [`
         :host ::ng-deep .p-dialog .product-image {
             width: 150px;
