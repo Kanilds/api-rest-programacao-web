@@ -17,11 +17,13 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 })
 export class AnimeListarComponent implements OnInit {
 
+  putOrPost: boolean
   animeDialogo: boolean;
   submetido: boolean;
   animes: any = [];
   status: any = [];
   anime: any = {
+    _id: '',
     titulo: '',
     estudio: '',
     status: '',
@@ -35,10 +37,10 @@ export class AnimeListarComponent implements OnInit {
     this.pesquisarAnime()
 
     this.status = [
-      { label: 'PLANEJANDO', value: 'planejando' },
-      { label: 'ASSISTINDO', value: 'assistindo' },
-      { label: 'EM ESPERA', value: 'em espera' },
-      { label: 'FINALIZADO', value: 'finalizado' }
+      { label: 'Planejando', value: 'Planejando' },
+      { label: 'Assistindo', value: 'Assistindo' },
+      { label: 'Em Espera', value: 'Em Espera' },
+      { label: 'Finalizado', value: 'Finalizado' }
     ];
   }
 
@@ -48,12 +50,21 @@ export class AnimeListarComponent implements OnInit {
   }
 
   openNew() {
+    this.putOrPost = false;
     this.submetido = false;
     this.animeDialogo = true;
   }
 
   editAnime(anime) {
+    this.putOrPost = true;
     this.animeDialogo = true;
+
+    this.anime._id = anime._id
+    this.anime.titulo = anime.titulo
+    this.anime.estudio = anime.estudio
+    this.anime.status = anime.status
+    this.anime.progresso = anime.progresso
+    this.anime.nota = anime.nota
   }
 
   deleteAnime(anime) {
@@ -68,7 +79,7 @@ export class AnimeListarComponent implements OnInit {
               this.pesquisarAnime();
             }
           );
-        this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Anime Deletado', life: 3000 });
+        this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Anime Deletado!', life: 3000 });
       }
     });
   }
@@ -80,12 +91,26 @@ export class AnimeListarComponent implements OnInit {
 
   saveAnime() {
     this.submetido = true;
+    const headers = { 'Content-Type': 'application/json' };
+    const body = JSON.stringify(this.anime);
 
-    this.http.post('http://localhost:4000/animes', JSON.stringify(this.anime))
-      .subscribe(
-        resultado => {
-          console.log(this.anime);
-        }
-      );
+    if (this.putOrPost) {
+      const { _id } = this.anime
+
+      this.http.put<any>(`http://localhost:4000/animes/${_id}`, body, { headers })
+        .subscribe(
+          () => {
+            this.pesquisarAnime();
+          });
+      this.hideDialog();
+      this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Anime Atualizado!', life: 3000 });
+    } else {
+      this.http.post<any>('http://localhost:4000/animes', body, { headers })
+        .subscribe(() => {
+          this.pesquisarAnime();
+        });
+      this.hideDialog()
+      this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Anime Criado!', life: 3000 });
+    }
   }
 }
