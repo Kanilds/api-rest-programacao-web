@@ -20,9 +20,7 @@ import { ToastModule } from 'primeng/toast';
 import { CarouselModule } from 'primeng/carousel';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { RatingModule } from 'primeng/rating';
-import { CaptchaModule } from 'primeng/captcha';
 import { FieldsetModule } from 'primeng/fieldset';
-import { GMapModule } from 'primeng/gmap';
 import { CardModule } from 'primeng/card';
 
 import { AppComponent } from './app.component';
@@ -31,13 +29,6 @@ import { AnimeComponent } from './anime/anime.component';
 
 const routes: Routes = [
   { path: '', component: AnimeComponent},
-  // { path: 'produtos', component: ProdutolistagemComponent },
-  // { path: 'venda', component: VendaComponent },
-  // { path: 'produtos/novo', component: ProdutocadastroComponent },
-  // { path: 'produtos/atualizar/:codigo', component: ProdutoatualizarComponent },
-  // { path: 'fornecedores', component: FornecedorlistagemComponent },
-  // { path: 'fornecedores/novo', component: FornecedorcadastroComponent },
-  // { path: 'fornecedores/atualizar/:codigo', component: FornecedoratualizarComponent }
 ];
 
 @NgModule({
@@ -65,9 +56,7 @@ const routes: Routes = [
     CarouselModule,
     InputNumberModule,
     RatingModule,
-    CaptchaModule,
     FieldsetModule,
-    GMapModule,
     CardModule
   ],
   providers: [ConfirmationService, MessageService],
