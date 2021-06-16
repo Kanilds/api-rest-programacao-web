@@ -4,11 +4,7 @@
     <p-toolbar styleClass="p-mb-4">
         <ng-template pTemplate="left">
             <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success p-mr-2"
-                (click)="openNew()"></button>
-        </ng-template>
-        <ng-template pTemplate="right">
-            <p-fileUpload mode="basic" accept="image/*" [maxFileSize]="1000000" label="Import" chooseLabel="Import"
-                class="p-mr-2 p-d-inline-block"></p-fileUpload>
+                (click)="criarAnime()"></button>
         </ng-template>
     </p-toolbar>
 
@@ -65,33 +61,38 @@
     </p-table>
 </div>
 
-<p-dialog [(visible)]="animeDialogo" [style]="{width: '450px'}" header="Detalhes do Anime" [modal]="true"
-    styleClass="p-fluid">
+<p-dialog [(visible)]="animeDialogo" [style]="{width: '450px'}" header="Detalhes do Anime" [modal]="true" styleClass="p-fluid" [closable]="false">
     <ng-template pTemplate="content">
         <div class="p-field">
             <label for="titulo">Titulo</label>
+            <span _ngcontent-emx-c135="" class="p-input-icon-right">
+            <i _ngcontent-emx-c135="" class="pi pi-spin pi-spinner"></i>
             <input type="text" pInputText id="titulo" [(ngModel)]="anime.titulo" required autofocus/>
-            <small class="p-error" *ngIf="submitted && !anime.titulo">Titulo é requirido.</small>
+            </span>
+            <small class="p-error" *ngIf="submetido && anime.titulo === ''">Titulo é requirido.</small>
         </div>
         <div class="p-field">
             <label for="estudio">Estudio</label>
-            <input type="text" pInputText id="estudio" [(ngModel)]="anime.estudio" autofocus/>
+            <input type="text" pInputText id="estudio" [(ngModel)]="anime.estudio" required autofocus/>
+            <small class="p-error" *ngIf="submetido && anime.estudio === ''">Estudio é requirido.</small>
         </div>
         <div class="p-field">
             <label for="status">Status</label>
-            <p-dropdown [(ngModel)]="anime.status" inputId="status" [options]="status" 
-                placeholder="Selecione">
+            <p-dropdown appendTo="body" [(ngModel)]="anime.status" inputId="status" [options]="status" 
+            required placeholder="Selecione">
             </p-dropdown>
+            <small class="p-error" *ngIf="submetido && anime.status === ''">Status é requirido.</small>
         </div>
 
         <div class="p-formgrid p-grid">
             <div class="p-field p-col">
                 <label for="progresso">Progresso</label>
-                <p-inputNumber id="progresso" [(ngModel)]="anime.progresso"></p-inputNumber>
-            </div>
-            <div class="p-field p-col">
+                <p-inputNumber id="progresso" [(ngModel)]="anime.progresso" [min]="0" value=0></p-inputNumber>
+            </div>  
+            <div class="p-field p-col" style="padding-top: 20px;">
                 <label for="nota">Nota</label>
-                <p-inputNumber id="nota" [(ngModel)]="anime.nota"></p-inputNumber>
+                <p-rating id="nota" [(ngModel)]="anime.nota"></p-rating>
+                <!-- <p-inputNumber id="nota" [(ngModel)]="anime.nota" [min]="0" [max]="5" value=0></p-inputNumber> -->
             </div>
         </div>
     </ng-template>
