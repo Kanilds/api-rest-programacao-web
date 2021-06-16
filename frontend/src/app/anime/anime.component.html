@@ -3,190 +3,129 @@
 <div class="p-grid p-jc-center p-shadow-5">
     <div class="p-col-9">
         <div class="container">
-    <p-card class="naruto">
-        <div class="p-grid p-jc-center">
-            <div class="p-col-12">
-                <p-carousel class="slides-wrapper" [value]="fotos" [autoplayInterval]="6000" [circular]="true">
-                    <ng-template #item let-item let-i="index" let-foto pTemplate="foto">
-                        <div>
-                            <img class="items" [src]="foto.name">
+            <p-card class="naruto">
+                <div class="p-grid p-jc-center">
+                    <div class="p-col-12">
+                        <p-carousel class="slides-wrapper" [value]="fotos" [autoplayInterval]="6000" [circular]="true">
+                            <ng-template #item let-item let-i="index" let-foto pTemplate="foto">
+                                <div>
+                                    <img class="items" [src]="foto.name">
+                                </div>
+                            </ng-template>
+                        </p-carousel>
+                    </div>
+                </div>
+            </p-card>
+
+            <div class="card">
+                <p-toolbar styleClass="p-mb-4">
+                    <ng-template pTemplate="left">
+                        <button pButton pRipple label="Novo" icon="pi pi-plus" class="p-button-success p-mr-2"
+                            (click)="criarAnime()"></button>
+                    </ng-template>
+                    <h3 class="h3">Animes</h3>
+                </p-toolbar>
+
+                <p-table #dt [value]="animes" [rows]="10" [paginator]="true"
+                    [globalFilterFields]="['titulo','estudio','status','progresso', 'nota']" [rowHover]="true"
+                    dataKey="_id" currentPageReportTemplate="Mostrando {first} de {last} no total de {totalRecords}"
+                    [showCurrentPageReport]="true">
+                    <ng-template pTemplate="caption">
+                        <div class="p-d-flex p-ai-center p-jc-between">
+                            <h5 class="p-m-0">Lista de Animes</h5>
+                            <span class="p-input-icon-left">
+                                <i class="pi pi-search"></i>
+                                <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
+                                    placeholder="Pesquisar..." />
+                            </span>
                         </div>
                     </ng-template>
-                </p-carousel>
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th pSortableColumn="titulo">Titulo <p-sortIcon field="name"></p-sortIcon>
+                            </th>
+                            <th pSortableColumn="progresso">Progresso<p-sortIcon field="progresso"></p-sortIcon>
+                            </th>
+                            <th pSortableColumn="estudio">Estudio <p-sortIcon field="estudio"></p-sortIcon>
+                            </th>
+                            <th pSortableColumn="nota">nota<p-sortIcon field="nota"></p-sortIcon>
+                            </th>
+                            <th pSortableColumn="status">Status<p-sortIcon field="status"></p-sortIcon>
+                            </th>
+                            <th></th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-anime>
+                        <tr>
+                            <td>{{anime.titulo}}</td>
+                            <td>{{anime.progresso}}</td>
+                            <td>{{anime.estudio}}</td>
+                            <td>
+                                <p-rating [ngModel]="anime.nota" [readonly]="true" [cancel]="false"></p-rating>
+                            </td>
+                            <td>{{anime.status}}</td>
+                            <td>
+                                <button pButton pRipple icon="pi pi-pencil"
+                                    class="p-button-rounded p-button-success p-mr-2"
+                                    (click)="editAnime(anime)"></button>
+                                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
+                                    (click)="deleteAnime(anime)"></button>
+                            </td>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="summary">
+                        <div class="p-d-flex p-ai-center p-jc-between">
+                            No total, existem {{animes ? animes.length : 0 }} animes.
+                        </div>
+                    </ng-template>
+                </p-table>
             </div>
-        </div>
-    </p-card>
 
-    <div class="card">
-        <p-toolbar styleClass="p-mb-4">
-            <ng-template pTemplate="left">
-                <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success p-mr-2"
-                    (click)="criarAnime()"></button>
-            </ng-template>
-
-            <h3 class="h3">Animes</h3> 
-
-        </p-toolbar>
-
-    <p-table #dt [value]="animes" [rows]="10" [paginator]="true"
-        [globalFilterFields]="['titulo','estudio','status','progresso', 'nota']" [rowHover]="true" dataKey="_id"
-        currentPageReportTemplate="Mostrando {first} de {last} no total de {totalRecords}" [showCurrentPageReport]="true">
-        <ng-template pTemplate="caption">
-            <div class="p-d-flex p-ai-center p-jc-between">
-                <h5 class="p-m-0">Lista de Animes</h5>
-                <span class="p-input-icon-left">
-                    <i class="pi pi-search"></i>
-                    <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
-                        placeholder="Pesquisar..." />
-                </span>
-            </div>
-        </ng-template>
-        <ng-template pTemplate="header">
-            <tr>
-                <th pSortableColumn="titulo">Titulo <p-sortIcon field="name"></p-sortIcon>
-                </th>
-                <th pSortableColumn="progresso">Progresso<p-sortIcon field="progresso"></p-sortIcon>
-                </th>
-                <th pSortableColumn="estudio">Estudio <p-sortIcon field="estudio"></p-sortIcon>
-                </th>
-                <th pSortableColumn="nota">nota<p-sortIcon field="nota"></p-sortIcon>
-                </th>
-                <th pSortableColumn="status">Status<p-sortIcon field="status"></p-sortIcon>
-                </th>
-                <th></th>
-            </tr>
-        </ng-template>
-        <ng-template pTemplate="body" let-anime>
-            <tr>
-                <td>{{anime.titulo}}</td>
-                <td>{{anime.progresso}}</td>
-                <td>{{anime.estudio}}</td>
-                <td>
-                    <p-rating [ngModel]="anime.nota" [readonly]="true" [cancel]="false"></p-rating>
-                </td>
-                <td>{{anime.status}}</td>
-                <td>
-                    <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2"
-                        (click)="editAnime(anime)"></button>
-                    <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
-                        (click)="deleteAnime(anime)"></button>
-                </td>
-            </tr>
-        </ng-template>
-        <ng-template pTemplate="summary">
-            <div class="p-d-flex p-ai-center p-jc-between">
-                No total, existem {{animes ? animes.length : 0 }} animes.
-            </div>
-        </ng-template>
-    </p-table>
-</div>
-    
-        <div class="card">
-            <p-toolbar styleClass="p-mb-4">
-                <ng-template pTemplate="left">
-                    <button pButton pRipple label="Novo" icon="pi pi-plus" class="p-button-success p-mr-2"
-                        (click)="criarAnime()"></button>
-                </ng-template>
-            </p-toolbar>
-    
-            <p-table #dt [value]="animes" [rows]="10" [paginator]="true"
-                [globalFilterFields]="['titulo','estudio','status','progresso', 'nota']" [rowHover]="true" dataKey="_id"
-                currentPageReportTemplate="Mostrando {first} de {last} no total de {totalRecords}"
-                [showCurrentPageReport]="true">
-                <ng-template pTemplate="caption">
-                    <div class="p-d-flex p-ai-center p-jc-between">
-                        <h5 class="p-m-0">Lista de Animes</h5>
-                        <span class="p-input-icon-left">
-                            <i class="pi pi-search"></i>
-                            <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
-                                placeholder="Pesquisar..." />
+            <p-dialog [(visible)]="animeDialogo" [style]="{width: '450px'}" header="Detalhes do Anime" [modal]="true"
+                styleClass="p-fluid" [closable]="false">
+                <ng-template pTemplate="content">
+                    <div class="p-field">
+                        <label for="titulo">Titulo</label>
+                        <span _ngcontent-emx-c135="" class="p-input-icon-right">
+                            <i _ngcontent-emx-c135="" class="pi pi-check"></i>
+                            <input type="text" pInputText id="titulo" [(ngModel)]="anime.titulo" required autofocus />
                         </span>
+                        <small class="p-error" *ngIf="submetido && anime.titulo === ''">Titulo é requirido.</small>
+                    </div>
+                    <div class="p-field">
+                        <label for="estudio">Estudio</label>
+                        <input type="text" pInputText id="estudio" [(ngModel)]="anime.estudio" required autofocus />
+                        <small class="p-error" *ngIf="submetido && anime.estudio === ''">Estudio é requirido.</small>
+                    </div>
+                    <div class="p-field">
+                        <label for="status">Status</label>
+                        <p-dropdown appendTo="body" [(ngModel)]="anime.status" inputId="status" [options]="status"
+                            required placeholder="Selecione">
+                        </p-dropdown>
+                        <small class="p-error" *ngIf="submetido && anime.status === ''">Status é requirido.</small>
+                    </div>
+
+                    <div class="p-formgrid p-grid">
+                        <div class="p-field p-col">
+                            <label for="progresso">Progresso</label>
+                            <p-inputNumber id="progresso" [(ngModel)]="anime.progresso" [min]="0" value=0>
+                            </p-inputNumber>
+                        </div>
+                        <label for="nota">Nota</label>
+                        <div class="p-field p-col" style="padding-top: 40px;">
+                            <p-rating id="nota" [(ngModel)]="anime.nota"></p-rating>
+                        </div>
                     </div>
                 </ng-template>
-                <ng-template pTemplate="header">
-                    <tr>
-                        <th pSortableColumn="titulo">Titulo <p-sortIcon field="name"></p-sortIcon>
-                        </th>
-                        <th pSortableColumn="progresso">Progresso<p-sortIcon field="progresso"></p-sortIcon>
-                        </th>
-                        <th pSortableColumn="estudio">Estudio <p-sortIcon field="estudio"></p-sortIcon>
-                        </th>
-                        <th pSortableColumn="nota">nota<p-sortIcon field="nota"></p-sortIcon>
-                        </th>
-                        <th pSortableColumn="status">Status<p-sortIcon field="status"></p-sortIcon>
-                        </th>
-                        <th></th>
-                    </tr>
+
+                <ng-template pTemplate="footer">
+                    <button pButton pRipple label="Cancelar" icon="pi pi-times" class="p-button-text"
+                        (click)="hideDialog()"></button>
+                    <button pButton pRipple label="Salvar" icon="pi pi-check" class="p-button-text"
+                        (click)="saveAnime()"></button>
                 </ng-template>
-                <ng-template pTemplate="body" let-anime>
-                    <tr>
-                        <td>{{anime.titulo}}</td>
-                        <td>{{anime.progresso}}</td>
-                        <td>{{anime.estudio}}</td>
-                        <td>
-                            <p-rating [ngModel]="anime.nota" [readonly]="true" [cancel]="false"></p-rating>
-                        </td>
-                        <td>{{anime.status}}</td>
-                        <td>
-                            <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2"
-                                (click)="editAnime(anime)"></button>
-                            <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
-                                (click)="deleteAnime(anime)"></button>
-                        </td>
-                    </tr>
-                </ng-template>
-                <ng-template pTemplate="summary">
-                    <div class="p-d-flex p-ai-center p-jc-between">
-                        No total, existem {{animes ? animes.length : 0 }} animes.
-                    </div>
-                </ng-template>
-            </p-table>
+            </p-dialog>
+
+            <p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
         </div>
-    
-        <p-dialog [(visible)]="animeDialogo" [style]="{width: '450px'}" header="Detalhes do Anime" [modal]="true"
-            styleClass="p-fluid" [closable]="false">
-            <ng-template pTemplate="content">
-                <div class="p-field">
-                    <label for="titulo">Titulo</label>
-                    <span _ngcontent-emx-c135="" class="p-input-icon-right">
-                        <i _ngcontent-emx-c135="" class="pi pi-check"></i>
-                        <input type="text" pInputText id="titulo" [(ngModel)]="anime.titulo" required autofocus />
-                    </span>
-                    <small class="p-error" *ngIf="submetido && anime.titulo === ''">Titulo é requirido.</small>
-                </div>
-                <div class="p-field">
-                    <label for="estudio">Estudio</label>
-                    <input type="text" pInputText id="estudio" [(ngModel)]="anime.estudio" required autofocus />
-                    <small class="p-error" *ngIf="submetido && anime.estudio === ''">Estudio é requirido.</small>
-                </div>
-                <div class="p-field">
-                    <label for="status">Status</label>
-                    <p-dropdown appendTo="body" [(ngModel)]="anime.status" inputId="status" [options]="status" required
-                        placeholder="Selecione">
-                    </p-dropdown>
-                    <small class="p-error" *ngIf="submetido && anime.status === ''">Status é requirido.</small>
-                </div>
-    
-                <div class="p-formgrid p-grid">
-                    <div class="p-field p-col">
-                        <label for="progresso">Progresso</label>
-                        <p-inputNumber id="progresso" [(ngModel)]="anime.progresso" [min]="0" value=0></p-inputNumber>
-                    </div>
-                    <label for="nota">Nota</label>
-                    <div class="p-field p-col" style="padding-top: 40px;">
-                        <p-rating id="nota" [(ngModel)]="anime.nota"></p-rating>
-                    </div>
-                </div>
-            </ng-template>
-    
-            <ng-template pTemplate="footer">
-                <button pButton pRipple label="Cancelar" icon="pi pi-times" class="p-button-text"
-                    (click)="hideDialog()"></button>
-                <button pButton pRipple label="Salvar" icon="pi pi-check" class="p-button-text"
-                    (click)="saveAnime()"></button>
-            </ng-template>
-        </p-dialog>
-    
-        <p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
     </div>
-</div>
