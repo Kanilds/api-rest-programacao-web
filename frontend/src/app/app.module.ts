@@ -26,15 +26,11 @@ import { GMapModule } from 'primeng/gmap';
 import { CardModule } from 'primeng/card';
 
 import { AppComponent } from './app.component';
-import { NavbarComponent } from './navbar/navbar.component';
-import { HomeComponent } from './home/home.component';
-import { AnimeListarComponent } from './anime-listar/anime-listar.component';
-import { AnimeCadastrarComponent } from './anime-cadastrar/anime-cadastrar.component';
-import { AnimeAtualizarComponent } from './anime-atualizar/anime-atualizar.component';
 
+import { AnimeComponent } from './anime/anime.component';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent},
+  { path: '', component: AnimeComponent},
   // { path: 'produtos', component: ProdutolistagemComponent },
   // { path: 'venda', component: VendaComponent },
   // { path: 'produtos/novo', component: ProdutocadastroComponent },
@@ -47,11 +43,7 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent,
-    HomeComponent,
-    AnimeListarComponent,
-    AnimeCadastrarComponent,
-    AnimeAtualizarComponent
+    AnimeComponent,
   ],
   imports: [
     BrowserModule,

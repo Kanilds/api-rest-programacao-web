@@ -3,11 +3,11 @@ import { Component, OnInit } from '@angular/core';
 import { ConfirmationService, MessageService } from 'primeng/api';
 
 @Component({
-  selector: 'app-anime-listar',
-  templateUrl: './anime-listar.component.html',
+  selector: 'app-anime',
+  templateUrl: './anime.component.html',
   providers: [MessageService, ConfirmationService]
 })
-export class AnimeListarComponent implements OnInit {
+export class AnimeComponent implements OnInit {
 
   putOrPost: boolean
   animeDialogo: boolean;

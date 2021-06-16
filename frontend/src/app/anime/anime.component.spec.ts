@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AnimeListarComponent } from './anime-listar.component';
+import { AnimeListarComponent } from './anime.component';
 
 describe('AnimeListarComponent', () => {
   let component: AnimeListarComponent;

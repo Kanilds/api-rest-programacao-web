@@ -10,14 +10,14 @@
 
     <p-table #dt [value]="animes" [rows]="10" [paginator]="true"
         [globalFilterFields]="['titulo','estudio','status','progresso', 'nota']" [rowHover]="true" dataKey="_id"
-        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
+        currentPageReportTemplate="Mostrando {first} de {last} no total de {totalRecords}" [showCurrentPageReport]="true">
         <ng-template pTemplate="caption">
             <div class="p-d-flex p-ai-center p-jc-between">
                 <h5 class="p-m-0">Lista de Animes</h5>
                 <span class="p-input-icon-left">
                     <i class="pi pi-search"></i>
                     <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
-                        placeholder="Search..." />
+                        placeholder="Pesquisar..." />
                 </span>
             </div>
         </ng-template>
@@ -55,7 +55,7 @@
         </ng-template>
         <ng-template pTemplate="summary">
             <div class="p-d-flex p-ai-center p-jc-between">
-                In total there are {{animes ? animes.length : 0 }} animes.
+                No total, existem {{animes ? animes.length : 0 }} animes.
             </div>
         </ng-template>
     </p-table>
@@ -66,7 +66,7 @@
         <div class="p-field">
             <label for="titulo">Titulo</label>
             <span _ngcontent-emx-c135="" class="p-input-icon-right">
-            <i _ngcontent-emx-c135="" class="pi pi-spin pi-spinner"></i>
+            <i _ngcontent-emx-c135="" class="pi pi-check"></i>
             <input type="text" pInputText id="titulo" [(ngModel)]="anime.titulo" required autofocus/>
             </span>
             <small class="p-error" *ngIf="submetido && anime.titulo === ''">Titulo é requirido.</small>
