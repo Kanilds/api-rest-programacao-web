@@ -52,6 +52,7 @@ export class AnimeListarComponent implements OnInit {
     this.putOrPost = false;
     this.submetido = false;
     this.animeDialogo = true;
+    
   }
 
   editAnime(anime) {
