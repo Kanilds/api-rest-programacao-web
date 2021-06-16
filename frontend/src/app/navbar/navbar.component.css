@@ -4,11 +4,16 @@
   background-color: #1e94d2;
 }
 
+
+
 .barra{
   margin: 0px 4px;
 }
 
 .navbar-toggle {
+  position: absolute;
+  left: 1135px;
+
   color: black;
 }
 

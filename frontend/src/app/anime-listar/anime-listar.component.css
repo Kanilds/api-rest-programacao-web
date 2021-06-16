@@ -1,8 +1,29 @@
-/* .cabecalho {
+.cabecalho {
   font-weight: bold;
+  font-variant: small-caps;
 }
 
-.col-estoque {
+.Newanime{
+  font-weight: bold;
+  font-variant: small-caps;
+  color: white;
+  text-shadow:  0.1em 0.1em 0.1000em rgb(0, 0, 0);
+
+}
+
+
+.h2{
+  color: white;
+  font-style: italic;
+  text-align: center;
+  font-variant: small-caps;
+  font-weight: bold;
+  margin-top: -50px;
+  text-shadow:  0.1em 0.1em 0.1000em rgb(0, 0, 0);
+}
+
+.col-titulo {
+  
   width: 150px;
 
 }
@@ -22,6 +43,5 @@
 }
 
 
- */
-
  
+
