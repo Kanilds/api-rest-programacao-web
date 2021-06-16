@@ -57,3 +57,13 @@ body{
 .p-toolbar {
   background-color: rgba(255, 255, 255, 0.5);
 }
+
+.h3{
+  font-family: fantasy;
+  font-style: italic;
+  font-size: 50px;
+  position: absolute;
+  margin-left: 500px;
+  color: #2212b9;
+  text-shadow: 0.04em 0.04em 0.10em rgb(0, 0, 0)
+}
