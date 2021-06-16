@@ -5,7 +5,10 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 @Component({
   selector: 'app-anime-listar',
   templateUrl: './anime-listar.component.html',
+<<<<<<< HEAD
   styleUrls: ['./anime-listar.component.css'],
+=======
+>>>>>>> 25e9ff381059d06800fe97ef03bda0d50c5619aa
   styles: [`
         :host ::ng-deep .p-dialog .product-image {
             width: 150px;
@@ -53,6 +56,10 @@ export class AnimeListarComponent implements OnInit {
     this.putOrPost = false;
     this.submetido = false;
     this.animeDialogo = true;
+<<<<<<< HEAD
+=======
+    
+>>>>>>> 25e9ff381059d06800fe97ef03bda0d50c5619aa
   }
 
   editAnime(anime) {

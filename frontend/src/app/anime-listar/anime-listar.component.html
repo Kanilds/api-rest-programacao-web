@@ -29,9 +29,9 @@
             <tr>
                 <th pSortableColumn="titulo">Titulo <p-sortIcon field="name"></p-sortIcon>
                 </th>
-                <th pSortableColumn="progresso">Progresso<p-sortIcon field="price"></p-sortIcon>
+                <th pSortableColumn="progresso">Progresso<p-sortIcon field="progresso"></p-sortIcon>
                 </th>
-                <th pSortableColumn="estudio">Estudio <p-sortIcon field="category"></p-sortIcon>
+                <th pSortableColumn="estudio">Estudio <p-sortIcon field="estudio"></p-sortIcon>
                 </th>
                 <th pSortableColumn="nota">nota<p-sortIcon field="nota"></p-sortIcon>
                 </th>
@@ -65,7 +65,7 @@
     </p-table>
 </div>
 
-<p-dialog [(visible)]="animeDialogo" [style]="{width: '450px'}, { height: '600'}" header="Detalhes do Anime" [modal]="true"
+<p-dialog [(visible)]="animeDialogo" [style]="{width: '450px'}" header="Detalhes do Anime" [modal]="true"
     styleClass="p-fluid">
     <ng-template pTemplate="content">
         <div class="p-field">
