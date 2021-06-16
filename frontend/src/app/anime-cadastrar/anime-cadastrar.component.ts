@@ -17,31 +17,62 @@ export class AnimeCadastrarComponent implements OnInit {
   ) { this.router = router; }
 
   ngOnInit(): void {
-    this.http.get('http://localhost:8080/rest/fornecedor')
-      .subscribe(resultado => this.fornecedores = resultado);
+    
   }
 
-  produto: any = {
-    descricao: '',
-    preco: '',
-    estoque: ''
+  animes: any = [
+    'Jujutsu kaisen',
+    'Naruto',
+    'Dragon Ball',
+    'Bleach',
+    'Rurouni Kenshin: Meiji Kenkaku Romantan',
+    'Yu Yu Hakusho',
+    'One piece',
+    'Berserk'
+  ]
+
+  estudios: any = [
+    'MAPPA',
+    'Toei Animation',
+    'Studio Pierrot',
+    'Gainax',
+    'Ufotable',
+    'David Production',
+    'WIT STUDIO',
+    'Sunrise'
+  ]
+
+  status: any = [
+    'Em curso',
+    'Visto',
+    'A ver',
+    'Pausado'
+  ]
+
+  anime: any = {
+    titulo: '',
+    estudio: '',
+    status: '',
+    progresso: '',
+    nota: ''
   };
-  fornecedores: any = [];
 
-  adicionarProduto(produto) {
 
-    if (this.produto.descricao === '') {
-      this.produto.descricao = null;
-    }
-    this.http.post('http://localhost:8080/rest/produto', JSON.stringify(this.produto))
+
+  adicionarAnime(anime) {
+
+    // if (this.anime.descricao === '') {
+    //   this.anime.descricao = null;
+    // }
+    this.http.post('http://localhost:4000/animes', JSON.stringify(this.anime))
       .subscribe(
         resultado => {
-          console.log(this.produto);
+          console.log(this.anime);
           this.mensagem();
-          this.router.navigate(['/', 'produtos']);
+          this.router.navigate(['/', 'animes']);
         }, erro => {
           if (erro.status === 500) {
-            console.log(this.produto);
+            console.log(this.anime);
             this.mensagemErro();
           }
         }
@@ -49,7 +80,7 @@ export class AnimeCadastrarComponent implements OnInit {
   }
 
   mensagem() {
-    this.messageService.add({ severity: 'success', summary: 'SUCESSO', detail: 'Produto criado!' });
+    this.messageService.add({ severity: 'success', summary: 'SUCESSO', detail: 'Anime criado!' });
   }
 
   mensagemErro() {
