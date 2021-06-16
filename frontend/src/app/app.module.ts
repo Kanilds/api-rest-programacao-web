@@ -6,6 +6,9 @@ import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { InputTextModule } from 'primeng/inputtext';
+import { ToolbarModule } from 'primeng/toolbar';
+import { DialogModule } from 'primeng/dialog';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
 import { TooltipModule } from 'primeng/tooltip';
@@ -52,6 +55,9 @@ const routes: Routes = [
   ],
   imports: [
     BrowserModule,
+    ToolbarModule,
+    DialogModule,
+    ConfirmDialogModule,
     HttpClientModule,
     InputTextModule,
     ConfirmPopupModule,
